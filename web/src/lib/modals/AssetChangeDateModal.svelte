@@ -45,6 +45,13 @@
     }
   };
 
+  // Store the user's timezone choice in lastSelectedTimezone so selectedOption can be recomputed from it (getPreferredTimeZone)
+  $effect(() => {
+    if (selectedOption) {
+      lastSelectedTimezone = selectedOption;
+    }
+  });
+
   // when changing the time zone, assume the configured date/time is meant for that time zone (instead of updating it)
   const date = $derived(DateTime.fromISO(selectedDate, { zone: selectedOption?.value, setZone: true }));
 </script>
